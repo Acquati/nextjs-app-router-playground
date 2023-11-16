@@ -10,5 +10,5 @@
   "files.associations": {
     "*.css": "tailwindcss"
   },
-  "cSpell.words": ["clsx", "heroicons"]
+  "cSpell.words": ["clsx", "dinero", "heroicons"]
 }

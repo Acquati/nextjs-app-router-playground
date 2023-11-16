@@ -1,19 +1,19 @@
-import { Boundary } from '#/ui/boundary';
-import CountUp from '#/ui/count-up';
-import clsx from 'clsx';
+import clsx from 'clsx'
+import Boundary from '@/ui/boundary'
+import CountUp from '@/ui/count-up'
 
 type Item = {
-  name: string;
-  type: 'server' | 'client';
-  size: number;
-  children?: Item[];
-};
+  name: string
+  type: 'server' | 'client'
+  size: number
+  children?: Item[]
+}
 
 const List = ({ items, depth }: { items: Item[]; depth: number }) => {
   return (
     <div>
       {items.map((item, i) => {
-        const isLast = i === items.length - 1;
+        const isLast = i === items.length - 1
 
         return (
           <div
@@ -33,19 +33,16 @@ const List = ({ items, depth }: { items: Item[]; depth: number }) => {
                       'before:h-full': !isLast,
                       // └─
                       'before:h-[17px]': isLast,
-                    },
+                    }
                   )
             }
           >
             <div className="flex gap-x-1">
               <div
-                className={clsx(
-                  'rounded-md px-2 py-0.5 text-xs tracking-wide',
-                  {
-                    'bg-vercel-blue text-blue-100': item.type === 'client',
-                    'bg-gray-700 text-gray-200': item.type === 'server',
-                  },
-                )}
+                className={clsx('rounded-md px-2 py-0.5 text-xs tracking-wide', {
+                  'bg-vercel-blue text-blue-100': item.type === 'client',
+                  'bg-gray-700 text-gray-200': item.type === 'server',
+                })}
               >
                 <span className="text-white/40">{'<'}</span>
                 {item.name}
@@ -56,9 +53,8 @@ const List = ({ items, depth }: { items: Item[]; depth: number }) => {
                 className={clsx(
                   'rounded-md bg-gray-800 px-2 py-0.5 text-xs tracking-wide text-white/50',
                   {
-                    'animate-[fadeToTransparent_1s_ease-in-out_forwards_1]':
-                      item.type === 'server',
-                  },
+                    'animate-[fadeToTransparent_1s_ease-in-out_forwards_1]': item.type === 'server',
+                  }
                 )}
               >
                 <span className="tabular-nums">
@@ -72,15 +68,13 @@ const List = ({ items, depth }: { items: Item[]; depth: number }) => {
               </div>
             </div>
 
-            {item.children ? (
-              <List items={item.children} depth={depth + 1} />
-            ) : null}
+            {item.children ? <List items={item.children} depth={depth + 1} /> : null}
           </div>
-        );
+        )
       })}
     </div>
-  );
-};
+  )
+}
 
 // Calculate the total bundle size of a specific component type (client or
 // server) in a tree
@@ -93,15 +87,13 @@ const sum = (items: Item[], componentType: Item['type']): number =>
       ((item.type === componentType ? item.size : 0) || 0) +
       // add the total size of children components recursively
       (item?.children ? sum(item.children, componentType) : 0),
-    0,
-  );
+    0
+  )
 
-export const ComponentTree = ({ items }: { items: Item[] }) => {
-  const clientTotal = sum(items, 'client');
-  const serverTotal = sum(items, 'server');
-  const clientDeltaAsPercent = Math.round(
-    (clientTotal / (clientTotal + serverTotal)) * 100,
-  );
+const ComponentTree = ({ items }: { items: Item[] }) => {
+  const clientTotal = sum(items, 'client')
+  const serverTotal = sum(items, 'server')
+  const clientDeltaAsPercent = Math.round((clientTotal / (clientTotal + serverTotal)) * 100)
 
   return (
     <Boundary animateRerendering={false} labels={['Component Tree']}>
@@ -115,11 +107,7 @@ export const ComponentTree = ({ items }: { items: Item[] }) => {
             <div className="space-y-3 rounded-lg bg-gray-900 p-4">
               <div className="flex items-center justify-between gap-x-3">
                 <div className="bg-vercel-blue rounded-md px-2 py-0.5 text-xs tabular-nums tracking-wider text-blue-50">
-                  <CountUp
-                    start={(clientTotal + serverTotal) / 1000}
-                    end={clientTotal / 1000}
-                  />{' '}
-                  KB
+                  <CountUp start={(clientTotal + serverTotal) / 1000} end={clientTotal / 1000} /> KB
                 </div>
                 <div className="text-sm text-gray-300">Bundle Size</div>
               </div>
@@ -127,7 +115,7 @@ export const ComponentTree = ({ items }: { items: Item[] }) => {
               <div className="overflow-hidden rounded-full bg-gray-700">
                 <div
                   className={clsx(
-                    'bg-vercel-blue h-2 animate-[translateXReset_1s_ease-in-out_1_reverse] rounded-full',
+                    'bg-vercel-blue h-2 animate-[translateXReset_1s_ease-in-out_1_reverse] rounded-full'
                   )}
                   style={{
                     transform: `translateX(-${100 - clientDeltaAsPercent}%)`,
@@ -158,5 +146,7 @@ export const ComponentTree = ({ items }: { items: Item[] }) => {
         </div>
       </div>
     </Boundary>
-  );
-};
+  )
+}
+
+export default ComponentTree

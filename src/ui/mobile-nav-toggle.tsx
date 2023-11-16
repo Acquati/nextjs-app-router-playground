@@ -1,38 +1,29 @@
-'use client';
-
-import { MenuAlt2Icon, XIcon } from '@heroicons/react/solid';
-import clsx from 'clsx';
-import React from 'react';
+'use client'
+import clsx from 'clsx'
+import React from 'react'
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/20/solid'
 
 const MobileNavContext = React.createContext<
   [boolean, React.Dispatch<React.SetStateAction<boolean>>] | undefined
->(undefined);
+>(undefined)
 
-export function MobileNavContextProvider({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  const [isOpen, setIsOpen] = React.useState(false);
+export const MobileNavContextProvider = ({ children }: { children: React.ReactNode }) => {
+  const [isOpen, setIsOpen] = React.useState(false)
   return (
-    <MobileNavContext.Provider value={[isOpen, setIsOpen]}>
-      {children}
-    </MobileNavContext.Provider>
-  );
+    <MobileNavContext.Provider value={[isOpen, setIsOpen]}>{children}</MobileNavContext.Provider>
+  )
 }
 
-export function useMobileNavToggle() {
-  const context = React.useContext(MobileNavContext);
+export const useMobileNavToggle = () => {
+  const context = React.useContext(MobileNavContext)
   if (context === undefined) {
-    throw new Error(
-      'useMobileNavToggle must be used within a MobileNavContextProvider',
-    );
+    throw new Error('useMobileNavToggle must be used within a MobileNavContextProvider')
   }
-  return context;
+  return context
 }
 
-export function MobileNavToggle({ children }: { children: React.ReactNode }) {
-  const [isOpen, setIsOpen] = useMobileNavToggle();
+export const MobileNavToggle = ({ children }: { children: React.ReactNode }) => {
+  const [isOpen, setIsOpen] = useMobileNavToggle()
 
   return (
     <>
@@ -41,13 +32,11 @@ export function MobileNavToggle({ children }: { children: React.ReactNode }) {
         className="group absolute right-0 top-0 flex h-14 items-center gap-x-2 px-4 lg:hidden"
         onClick={() => setIsOpen(!isOpen)}
       >
-        <div className="font-medium text-gray-100 group-hover:text-gray-400">
-          Menu
-        </div>
+        <div className="font-medium text-gray-100 group-hover:text-gray-400">Menu</div>
         {isOpen ? (
-          <XIcon className="block w-6 text-gray-300" />
+          <XMarkIcon className="block w-6 text-gray-300" />
         ) : (
-          <MenuAlt2Icon className="block w-6 text-gray-300" />
+          <Bars3Icon className="block w-6 text-gray-300" />
         )}
       </button>
 
@@ -60,5 +49,5 @@ export function MobileNavToggle({ children }: { children: React.ReactNode }) {
         {children}
       </div>
     </>
-  );
+  )
 }

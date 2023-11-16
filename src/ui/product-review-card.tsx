@@ -1,7 +1,7 @@
-import type { Review } from '#/app/api/reviews/review';
-import { ProductRating } from '#/ui/product-rating';
+import type { Review } from '@/app/api/reviews/review'
+import ProductRating from '@/ui/product-rating'
 
-export const ProductReviewCard = ({ review }: { review: Review }) => {
+const ProductReviewCard = ({ review }: { review: Review }) => {
   return (
     <div className="space-y-4">
       <div className="space-y-2">
@@ -15,5 +15,7 @@ export const ProductReviewCard = ({ review }: { review: Review }) => {
 
       <div className="text-gray-400">{review.text}</div>
     </div>
-  );
-};
+  )
+}
+
+export default ProductReviewCard
