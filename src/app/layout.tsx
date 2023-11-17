@@ -1,11 +1,8 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 import './globals.css'
 import GlobalNav from '@/ui/global-nav'
 import AddressBar from '@/ui/address-bar'
 import Byline from '@/ui/byline'
-
-const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: {
@@ -14,23 +11,12 @@ export const metadata: Metadata = {
   },
   description:
     'A playground to explore new Next.js App Router features such as nested layouts, instant loading states, streaming, and component level data fetching.',
-  openGraph: {
-    title: 'Next.js App Router Playground',
-    description:
-      'A playground to explore new Next.js App Router features such as nested layouts, instant loading states, streaming, and component level data fetching.',
-    images: [`/api/og?title=Next.js App Router`],
-  },
-  twitter: {
-    card: 'summary_large_image',
-  },
 }
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="en" className="[color-scheme:dark]">
-      <body
-        className={"bg-gray-1100 overflow-y-scroll bg-[url('/grid.svg')] pb-36 " + inter.className}
-      >
+      <body className="bg-gray-1100 overflow-y-scroll bg-[url('/grid.svg')] pb-36">
         <GlobalNav />
 
         <div className="lg:pl-72">

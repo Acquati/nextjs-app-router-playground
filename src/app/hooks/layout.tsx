@@ -8,10 +8,6 @@ const title = 'Hooks'
 
 export const metadata = {
   title,
-  openGraph: {
-    title,
-    images: [`/api/og?title=${title}`],
-  },
 }
 
 const Layout = async ({ children }: { children: React.ReactNode }) => {

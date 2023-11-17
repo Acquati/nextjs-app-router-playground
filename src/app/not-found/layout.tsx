@@ -7,10 +7,6 @@ const title = 'Not Found'
 
 export const metadata = {
   title,
-  openGraph: {
-    title,
-    images: [`/api/og?title=${title}`],
-  },
 }
 
 const Layout = async ({ children }: { children: React.ReactNode }) => {
