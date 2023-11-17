@@ -10,7 +10,7 @@ import ProductUsedPrice from '@/ui/product-used-price'
 import Dinero from 'dinero.js'
 
 const ProductCard = ({ product, href }: { product: Product; href: string }) => {
-  const price = Dinero(product.price)
+  const price = Dinero({ amount: product.price.amount })
 
   return (
     <Link href={href} className="group block">

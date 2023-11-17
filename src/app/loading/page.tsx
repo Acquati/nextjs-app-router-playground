@@ -16,7 +16,7 @@ const Page = () => {
           counter while the children load.
         </li>
         <li>
-          Navigation is interruptible. Try navigating to one category, then clicking a second
+          Navigation is interruptive. Try navigating to one category, then clicking a second
           category before the first one has loaded.
         </li>
       </ul>

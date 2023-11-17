@@ -8,7 +8,7 @@ const interSemiBold = fetch(new URL('./Inter-SemiBold.ttf', import.meta.url)).th
   res.arrayBuffer()
 )
 
-export const GET = async (req: NextRequest): Promise<Response | ImageResponse> {
+export const GET = async (req: NextRequest): Promise<Response | ImageResponse> => {
   try {
     const { searchParams } = new URL(req.url)
     const isLight = req.headers.get('Sec-CH-Prefers-Color-Scheme') === 'light'

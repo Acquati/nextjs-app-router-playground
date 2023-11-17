@@ -1,4 +1,4 @@
-import SkeletonCard from '@/ui/skeleton-card'
+import SkeletonCard from '@/ui/SkeletonCard'
 
 const Loading = () => {
   return (

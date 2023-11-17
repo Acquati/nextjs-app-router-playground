@@ -2,7 +2,7 @@ import Dinero from 'dinero.js'
 import { Product } from '@/app/api/products/product'
 
 const ProductUsedPrice = ({ usedPrice: usedPriceRaw }: { usedPrice: Product['usedPrice'] }) => {
-  const usedPrice = Dinero(usedPriceRaw)
+  const usedPrice = Dinero({ amount: usedPriceRaw?.amount })
 
   return (
     <div className="text-sm">

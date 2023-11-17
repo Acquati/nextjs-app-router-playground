@@ -1,6 +1,6 @@
 import { getCategory } from '@/app/api/categories/getCategories'
 import BuggyButton from '@/ui/buggy-button'
-import SkeletonCard from '@/ui/skeleton-card'
+import SkeletonCard from '@/ui/SkeletonCard'
 
 const Page = async ({ params }: { params: { categorySlug: string } }) => {
   const category = await getCategory({ slug: params.categorySlug })

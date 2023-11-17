@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation'
 import type { Category } from '@/app/api/categories/category'
-import SkeletonCard from '@/ui/skeleton-card'
+import SkeletonCard from '@/ui/SkeletonCard'
 
 const Page = async ({ params }: { params: { categorySlug: string } }) => {
   const res = await fetch(
